@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Fragment Id="FilesComponents" DirectoryRef="INSTALLDIR" SourcePath="..\..\dist\win-x64\AzerothCoreManager">
+
+    <!-- Main application files -->
+    <ComponentGroup Id="AppComponents" Directory="INSTALLDIR">
+      <Component Id="MainExe" Guid="PUT-GUID-HERE">
+        <File Id="ServiceExe" Source="AzerothCoreManager.Service.exe" KeyPath="yes"/>
+      </Component>
+      <!-- Add other files as needed -->
+    </ComponentGroup>
+
+  </Fragment>
+</Wix>

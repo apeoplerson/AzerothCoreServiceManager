@@ -1,0 +1,10 @@
+# Sample environment variables for MSI signing
+SIGNING_PFX=
+SIGNING_PFX_PASSWORD=
+
+# Usage:
+# Set these variables in your environment or script, then call sign.ps1
+# powershell -ExecutionPolicy Bypass -File installer\scripts\sign.ps1 `
+#     -msiPath .\dist\msi\AzerothCoreManager_1.0.0.msi `
+#     -pfxPath $env:SIGNING_PFX `
+#     -pfxPassword $env:SIGNING_PFX_PASSWORD

@@ -1,0 +1,15 @@
+<Project Sdk="WixToolset.Sdk/6.0.0">
+  <PropertyGroup>
+    <OutputType>Package</OutputType>
+    <Platform>x64</Platform>
+    <ProductVersion>$(Version)</ProductVersion>
+    <Manufacturer>AzerothCore</Manufacturer>
+    <ProductName>AzerothCoreManager</ProductName>
+    <PackageName>AzerothCoreManager</PackageName>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Heat harvest will generate a Files.wxs; include it -->
+    <Compile Include="Files.wxs" />
+    <Compile Include="AzerothCoreManager.wxs" />
+  </ItemGroup>
+</Project>
