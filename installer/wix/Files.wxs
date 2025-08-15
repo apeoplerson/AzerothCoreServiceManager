@@ -1,4 +1,6 @@
 
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Fragment Id="FilesComponents" DirectoryRef="INSTALLDIR" SourcePath="../../dist/win-x64/AzerothCoreManager">
@@ -13,5 +15,6 @@
 
   </Fragment>
 </Wix>
+
 
 
