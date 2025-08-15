@@ -2,12 +2,13 @@
 
 
 
+
 param (
     [string]$Version = "1.0.0"
 )
 
 # (Optionally) ensure publish exists before MSI:
-$publishDir = "..\..\dist\win-x64\AzerothCoreManager"
+$publishDir = ".\dist\win-x64\AzerothCoreManager"
 if (-not (Test-Path $publishDir)) {
     Write-Host "Publish output directory missing: $publishDir. Run dotnet publish first."
     exit 1
@@ -21,17 +22,17 @@ if (-not $exeFiles) {
 }
 
 # WiX v4 build:
-dotnet build "..\..\installer\wix\AzerothCoreManager.wixproj" -c Release `
+dotnet build ".\installer\wix\AzerothCoreManager.wixproj" -c Release `
     -p:Version=$Version `
     -p:ProductVersion=$Version `
     -p:Platform=x64
 
 # Copy MSI to dist\msi
-New-Item -Force -ItemType Directory "..\..\dist\msi" | Out-Null
-Get-ChildItem "..\..\installer\wix\bin\Release\*.msi" | Copy-Item -Destination "..\..\dist\msi" -Force
+New-Item -Force -ItemType Directory ".\dist\msi" | Out-Null
+Get-ChildItem ".\installer\wix\bin\x64\Release\*.msi" | Copy-Item -Destination "..\..\dist\msi" -Force
 
 # Output path
-$msiPath = "..\..\dist\msi\AzerothCoreManager_$Version.msi"
+$msiPath = ".\dist\msi\AzerothCoreManager_$Version.msi"
 
 if (Test-Path $msiPath) {
     Write-Host "MSI created successfully at: $msiPath"
@@ -43,5 +44,6 @@ if (Test-Path $msiPath) {
     Write-Error "MSI build failed!"
     exit 1
 }
+
 
 
