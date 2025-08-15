@@ -6,28 +6,24 @@
     <Platform>x64</Platform>
     <Version>$(Version)</Version>
     <ProductVersion>$(Version)</ProductVersion>
-    <Manufacturer>AzerothCore</Manufacturer>
     <ProductName>AzerothCoreManager</ProductName>
-    <PackageName>AzerothCoreManager</PackageName>
+    <Manufacturer>YourCompany</Manufacturer>
+    <AppRoot>../../dist/win-x64/AzerothCoreManager</AppRoot>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="WixToolset.Heat" Version="4.*" />
   </ItemGroup>
-
   <ItemGroup>
-    <!-- Harvest files from publish directory -->
-    <HarvestDirectory Include="../../dist/win-x64/AzerothCoreManager">
+    <HarvestDirectory Include="$(AppRoot)">
       <ComponentGroupName>AppComponents</ComponentGroupName>
       <DirectoryRefId>INSTALLDIR</DirectoryRefId>
       <SuppressRootDirectory>true</SuppressRootDirectory>
     </HarvestDirectory>
-    <!-- Bind path replaces $(var.SourceDir) -->
-    <BindPath Include="../../dist/win-x64/AzerothCoreManager" />
+    <BindPath Include="$(AppRoot)" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Include="AzerothCoreManager.wxs" />
+    <Compile Include="Files.wxs" />
   </ItemGroup>
 </Project>
 

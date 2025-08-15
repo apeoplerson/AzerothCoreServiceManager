@@ -1,17 +1,9 @@
 
-
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Fragment Id="FilesComponents">
-
-    <!-- Main application files -->
+  <Fragment>
     <ComponentGroup Id="AppComponents">
-      <Component Id="MainExe" Guid="{PUT-GUID-HERE}">
-        <File Id="ServiceExe" Source="AzerothCoreManager.Service.exe" KeyPath="yes"/>
-      </Component>
-      <!-- Add other files as needed -->
+      <!-- Harvest or list files here -->
     </ComponentGroup>
-
   </Fragment>
 </Wix>
-

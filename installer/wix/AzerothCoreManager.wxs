@@ -1,27 +1,28 @@
-
-
-
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Description="Manages AzerothCore Authserver and Worldserver">
-    <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="1.0.0" Language="1033" UpgradeCode="PUT-GUID-HERE">
+  <Package Name="AzerothCoreManager"
+           Manufacturer="YourCompany"
+           Version="$(Version)"
+           UpgradeCode="PUT-GUID-HERE-1111-2222-3333-444444444444"
+           Language="1033">
+    <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
+    <Feature Id="MainFeature" Title="AzerothCoreManager" Level="1">
+      <ComponentGroupRef Id="AppComponents" />
+    </Feature>
 
-      <!-- MajorUpgrade -->
-      <MajorUpgrade AllowDowngrade="no" DowngradeErrorMessage="A newer version of AzerothCore Manager is already installed."/>
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLDIR" Name="AzerothCoreManager" />
+    </StandardDirectory>
 
-      <!-- Directory structure -->
-      <Directory Id="TARGETDIR" Name="SourceDir">
-        <Directory Id="ProgramFiles64Folder" Name="PFiles">
-          <Directory Id="INSTALLDIR" Name="AzerothCoreManager">
-
-            <!-- Components will be harvested here -->
-
-          </Directory>
-        </Directory>
-      </Directory>
-
-    </Product>
+    <Component Id="Svc" Directory="INSTALLDIR">
+      <File Source="$(var.AppRoot)\AzerothCoreManager.Service.exe" />
+      <ServiceInstall Id="SvcInstall"
+                      Name="AzerothCoreManager"
+                      DisplayName="AzerothCore Manager"
+                      Description="Manages AzerothCore Authserver and Worldserver"
+                      Start="auto" Type="ownProcess" />
+      <ServiceControl Id="SvcControl" Name="AzerothCoreManager"
+                      Start="install" Stop="uninstall" Remove="uninstall" Wait="yes" />
+    </Component>
   </Package>
 </Wix>
-
-
