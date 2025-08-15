@@ -1,13 +1,22 @@
 
 
 
+
 param (
     [string]$Version = "1.0.0"
 )
 
 # (Optionally) ensure publish exists before MSI:
-if (-not (Test-Path "..\..\dist\win-x64\AzerothCoreManager\AzerothCoreManager.Service.exe")) {
-    Write-Host "Publish output missing. Run dotnet publish first or call the publish step here."
+$publishDir = "..\..\dist\win-x64\AzerothCoreManager"
+if (-not (Test-Path $publishDir)) {
+    Write-Host "Publish output directory missing: $publishDir. Run dotnet publish first."
+    exit 1
+}
+
+# Check for any .exe files in the publish directory
+$exeFiles = Get-ChildItem "$publishDir\*.exe" -ErrorAction SilentlyContinue
+if (-not $exeFiles) {
+    Write-Host "No executable files found in $publishDir. Run dotnet publish first."
     exit 1
 }
 
@@ -34,4 +43,5 @@ if (Test-Path $msiPath) {
     Write-Error "MSI build failed!"
     exit 1
 }
+
 
