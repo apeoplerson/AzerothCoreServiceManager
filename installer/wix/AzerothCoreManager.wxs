@@ -2,7 +2,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Package Name="AzerothCoreManager"
            Manufacturer="YourCompany"
-           Version="$(Version)"
+           Version="!(bind.Property.Version)"
            UpgradeCode="PUT-GUID-HERE-1111-2222-3333-444444444444"
            Language="1033">
     <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
@@ -15,7 +15,7 @@
     </StandardDirectory>
 
     <Component Id="Svc" Directory="INSTALLDIR">
-      <File Source="$(var.AppRoot)\AzerothCoreManager.Service.exe" />
+      <File Source="$(AppRoot)\AzerothCoreManager.Service.exe" />
       <ServiceInstall Id="SvcInstall"
                       Name="AzerothCoreManager"
                       DisplayName="AzerothCore Manager"

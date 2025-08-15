@@ -35,7 +35,8 @@ Write-Host "Building MSI with WiX v4..."
 dotnet build ".\installer\wix\AzerothCoreManager.wixproj" -c Release `
   -p:Version=$Version `
   -p:ProductVersion=$Version `
-  -p:Platform=x64
+  -p:Platform=x64 `
+  -p:AppRoot="..\..\dist\win-x64\AzerothCoreManager"
 
 # Copy MSI to dist\msi
 New-Item -Force -ItemType Directory ".\dist\msi" | Out-Null
