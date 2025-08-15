@@ -21,8 +21,10 @@ function Remove-BomAndLeadingWhitespace {
 # Sanitize .wxs files
 $wxsA = Join-Path $PSScriptRoot "..\wix\AzerothCoreManager.wxs"
 $wxsF = Join-Path $PSScriptRoot "..\wix\Files.wxs"
+$wxsS = Join-Path $PSScriptRoot "..\wix\ServiceComponents.wxs"
 Remove-BomAndLeadingWhitespace -Path $wxsA
 Remove-BomAndLeadingWhitespace -Path $wxsF
+Remove-BomAndLeadingWhitespace -Path $wxsS
 
 # Validate publish output exists
 if (-not (Test-Path ".\dist\win-x64\AzerothCoreManager\AzerothCoreManager.Service.exe")) {
