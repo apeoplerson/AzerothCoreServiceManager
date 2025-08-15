@@ -1,15 +1,33 @@
+
+
 <Project Sdk="WixToolset.Sdk/6.0.0">
   <PropertyGroup>
     <OutputType>Package</OutputType>
     <Platform>x64</Platform>
+    <Version>$(Version)</Version>
     <ProductVersion>$(Version)</ProductVersion>
     <Manufacturer>AzerothCore</Manufacturer>
     <ProductName>AzerothCoreManager</ProductName>
     <PackageName>AzerothCoreManager</PackageName>
   </PropertyGroup>
+
   <ItemGroup>
-    <!-- Heat harvest will generate a Files.wxs; include it -->
-    <Compile Include="Files.wxs" />
+    <PackageReference Include="WixToolset.Heat" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Harvest files from publish directory -->
+    <HarvestDirectory Include="../../dist/win-x64/AzerothCoreManager">
+      <ComponentGroupName>AppComponents</ComponentGroupName>
+      <DirectoryRefId>INSTALLDIR</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+    </HarvestDirectory>
+    <!-- Bind path replaces $(var.SourceDir) -->
+    <BindPath Include="../../dist/win-x64/AzerothCoreManager" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="AzerothCoreManager.wxs" />
   </ItemGroup>
 </Project>
+
