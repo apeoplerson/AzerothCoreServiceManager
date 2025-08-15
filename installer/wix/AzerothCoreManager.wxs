@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="!$(var.Version)" Language="1033" UpgradeCode="PUT-GUID-HERE">
+  <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="1.0.0" Language="1033" UpgradeCode="PUT-GUID-HERE">
 
     <!-- Package and MajorUpgrade -->
     <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Description="Manages AzerothCore Authserver and Worldserver"/>
