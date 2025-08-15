@@ -15,7 +15,7 @@
     </StandardDirectory>
 
     <Component Id="Svc" Directory="INSTALLDIR">
-      <File Source="$(AppRoot)\AzerothCoreManager.Service.exe" />
+      <File Source="!(bindpath.AppRoot)\AzerothCoreManager.Service.exe" />
       <ServiceInstall Id="SvcInstall"
                       Name="AzerothCoreManager"
                       DisplayName="AzerothCore Manager"
