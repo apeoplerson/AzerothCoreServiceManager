@@ -1,6 +1,8 @@
+
+
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="$(var.ProductVersion)" Language="1033" UpgradeCode="PUT-GUID-HERE">
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="$(ProductVersion)" Language="1033" UpgradeCode="PUT-GUID-HERE">
 
     <!-- Package and MajorUpgrade -->
     <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Description="Manages AzerothCore Authserver and Worldserver"/>
@@ -23,7 +25,7 @@
       <CreateFolder/>
       <RemoveFile Id="RemoveAppSettingsJson" On="Uninstall" Name="appsettings.json" SuppressMsg="yes"/>
       <Condition>NOT Installed</Condition>
-      <File Id="appsettings.json" Source="$(var.SourceDir)\appsettings.json" KeyPath="yes" Vital="no" Permanent="yes" NeverOverwrite="yes"/>
+      <File Id="appsettings.json" Source="appsettings.json" KeyPath="yes" Vital="no" Permanent="yes" NeverOverwrite="yes"/>
     </Component>
 
     <!-- Service Installation -->
@@ -39,7 +41,7 @@
     <DirectoryRef Id="INSTALLDIR">
       <ComponentRef Id="MainApplication"/>
       <ComponentRef Id="ServiceComponent"/>
-      <MergeRef Id="FilesComponents"/>
+      <ComponentGroupRef Id="AppComponents"/>
     </DirectoryRef>
 
     <!-- Start Menu Shortcut -->
@@ -68,3 +70,4 @@
 
   </Product>
 </Wix>
+
