@@ -32,14 +32,14 @@ if (-not (Test-Path "..\..\dist\win-x64\AzerothCoreManager\AzerothCoreManager.Se
 
 # WiX v4 build via MSBuild (this will be executed on Windows)
 Write-Host "Building MSI with WiX v4..."
-dotnet build "./installer/wix/AzerothCoreManager.wixproj" -c Release `
+dotnet build ".\installer\wix\AzerothCoreManager.wixproj" -c Release `
   -p:Version=$Version `
   -p:ProductVersion=$Version `
   -p:Platform=x64
 
 # Copy MSI to dist\msi
-New-Item -Force -ItemType Directory "./dist/msi" | Out-Null
-Get-ChildItem "./installer/wix/bin/Release/*.msi" | Copy-Item -Destination "./dist/msi" -Force
+New-Item -Force -ItemType Directory ".\dist\msi" | Out-Null
+Get-ChildItem ".\installer\wix\bin\Release\*.msi" | Copy-Item -Destination ".\dist\msi" -Force
 
 Write-Host "MSI build completed successfully!"
 
