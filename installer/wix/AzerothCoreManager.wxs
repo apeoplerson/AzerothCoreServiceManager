@@ -1,5 +1,3 @@
-
-
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="$(ProductVersion)" Language="1033" UpgradeCode="PUT-GUID-HERE">
