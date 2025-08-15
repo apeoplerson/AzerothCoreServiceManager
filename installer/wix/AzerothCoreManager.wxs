@@ -3,7 +3,7 @@
   <Package Name="AzerothCoreManager"
            Manufacturer="YourCompany"
            Version="!(bind.Property.Version)"
-           UpgradeCode="PUT-GUID-HERE-1111-2222-3333-444444444444"
+           UpgradeCode="5E13648B-3AFA-45E1-80A1-DCE4027AB5D2"
            Language="1033">
     <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
     <Feature Id="MainFeature" Title="AzerothCoreManager" Level="1">
