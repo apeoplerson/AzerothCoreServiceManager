@@ -25,7 +25,7 @@ Remove-BomAndLeadingWhitespace -Path $wxsA
 Remove-BomAndLeadingWhitespace -Path $wxsF
 
 # Validate publish output exists
-if (-not (Test-Path "..\..\dist\win-x64\AzerothCoreManager\AzerothCoreManager.Service.exe")) {
+if (-not (Test-Path ".\dist\win-x64\AzerothCoreManager\AzerothCoreManager.Service.exe")) {
   Write-Host "Publish output missing. Run dotnet publish first or call the publish step here."
   exit 1
 }
@@ -36,7 +36,7 @@ dotnet build ".\installer\wix\AzerothCoreManager.wixproj" -c Release `
   -p:Version=$Version `
   -p:ProductVersion=$Version `
   -p:Platform=x64 `
-  -p:AppRoot="..\..\dist\win-x64\AzerothCoreManager"
+  -p:AppRoot=".\dist\win-x64\AzerothCoreManager"
 
 # Copy MSI to dist\msi
 New-Item -Force -ItemType Directory ".\dist\msi" | Out-Null
