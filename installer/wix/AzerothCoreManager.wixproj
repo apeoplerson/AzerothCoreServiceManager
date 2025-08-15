@@ -1,5 +1,6 @@
 
 
+
 <Project Sdk="WixToolset.Sdk/6.0.0">
   <PropertyGroup>
     <OutputType>Package</OutputType>
@@ -24,6 +25,8 @@
   <ItemGroup>
     <Compile Include="AzerothCoreManager.wxs" />
     <Compile Include="Files.wxs" />
+    <Compile Include="ServiceComponents.wxs" />
   </ItemGroup>
 </Project>
+
 

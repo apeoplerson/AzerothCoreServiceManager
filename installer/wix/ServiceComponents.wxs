@@ -1,0 +1,18 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <ComponentGroup Id="ServiceComponents" Directory="INSTALLDIR">
+      <Component Id="Svc" Directory="INSTALLDIR">
+        <File Source="!(bindpath.AppRoot)\AzerothCoreManager.Service.exe" />
+        <ServiceInstall Id="SvcInstall"
+                        Name="AzerothCoreManager"
+                        DisplayName="Azeroth Core Manager"
+                        Description="Manages AzerothCore Authserver and Worldserver"
+                        Start="auto" Type="ownProcess" />
+        <ServiceControl Id="SvcControl" Name="AzerothCoreManager"
+                        Start="install" Stop="uninstall" Remove="uninstall" Wait="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
