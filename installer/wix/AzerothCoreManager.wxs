@@ -1,71 +1,25 @@
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="1.0.0" Language="1033" UpgradeCode="PUT-GUID-HERE">
+  <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Description="Manages AzerothCore Authserver and Worldserver">
+    <Product Id="*" Name="AzerothCore Manager" Manufacturer="AzerothCore" Version="1.0.0" Language="1033" UpgradeCode="PUT-GUID-HERE">
 
-    <!-- Package and MajorUpgrade -->
-    <Package InstallerVersion="500" Compressed="yes" InstallScope="perMachine" Description="Manages AzerothCore Authserver and Worldserver"/>
-    <MajorUpgrade AllowDowngrade="no" DowngradeErrorMessage="A newer version of AzerothCore Manager is already installed."/>
+      <!-- MajorUpgrade -->
+      <MajorUpgrade AllowDowngrade="no" DowngradeErrorMessage="A newer version of AzerothCore Manager is already installed."/>
 
-    <!-- Directory Structure -->
-    <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFiles64Folder" Name="Program Files">
-        <Directory Id="INSTALLDIR" Name="AzerothCoreManager">
-          <Directory Id="LogsFolder" Name="logs"/>
+      <!-- Directory structure -->
+      <Directory Id="TARGETDIR" Name="SourceDir">
+        <Directory Id="ProgramFiles64Folder" Name="PFiles">
+          <Directory Id="INSTALLDIR" Name="AzerothCoreManager">
+
+            <!-- Components will be harvested here -->
+
+          </Directory>
         </Directory>
       </Directory>
-      <Directory Id="ProgramMenuFolder" Name="ProgramData">
-        <Directory Id="ProgramMenuSubFolder" Name="AzerothCore Manager"/>
-      </Directory>
-    </Directory>
 
-    <!-- Components -->
-    <Component Id="MainApplication" Guid="PUT-GUID-HERE">
-      <CreateFolder/>
-      <RemoveFile Id="RemoveAppSettingsJson" On="Uninstall" Name="appsettings.json" SuppressMsg="yes"/>
-      <Condition>NOT Installed</Condition>
-      <File Id="appsettings.json" Source="appsettings.json" KeyPath="yes" Vital="no" Permanent="yes" NeverOverwrite="yes"/>
-    </Component>
-
-    <!-- Service Installation -->
-    <Component Id="ServiceComponent" Guid="PUT-GUID-HERE">
-      <CreateFolder/>
-      <ServiceInstall Id="SvcInstall" Name="AzerothCoreManager" DisplayName="AzerothCore Manager"
-                      Description="Manages AzerothCore Authserver and Worldserver"
-                      Start="auto" Type="ownProcess" Vital="yes"/>
-      <ServiceControl Id="SvcControl" Name="AzerothCoreManager" Start="install" Stop="uninstall" Remove="uninstall" Wait="yes"/>
-    </Component>
-
-    <!-- Files from heat harvest -->
-    <DirectoryRef Id="INSTALLDIR">
-      <ComponentRef Id="MainApplication"/>
-      <ComponentRef Id="ServiceComponent"/>
-      <ComponentGroupRef Id="AppComponents"/>
-    </DirectoryRef>
-
-    <!-- Start Menu Shortcut -->
-    <DirectoryRef Id="ProgramMenuSubFolder">
-      <Component Id="StartMenuShortcut" Guid="PUT-GUID-HERE">
-        <CreateFolder/>
-        <RemoveFile On="Uninstall" Name="AzerothCore Manager.lnk"/>
-        <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuSubFolder"
-                  Name="AzerothCore Manager" Description="Launch AzerothCore Manager Web UI"
-                  Target="[System64Folder]cmd.exe" Arguments="/C start http://127.0.0.1:8085"/>
-      </Component>
-    </DirectoryRef>
-
-    <!-- Firewall Rule Custom Actions -->
-    <CustomAction Id="CreateFirewallRule" Property="CreateFirewallRule" Value="New-NetFirewallRule -DisplayName &quot;AzerothCoreManager Local&quot; -Direction Inbound -Protocol TCP -LocalPort 8085 -Action Allow -RemoteAddress 127.0.0.1"
-                  Execute="deferred" Return="check"/>
-    <CustomAction Id="RemoveFirewallRule" Property="RemoveFirewallRule" Value="Remove-NetFirewallRule -DisplayName &quot;AzerothCoremanager Local&quot; -ErrorAction SilentlyContinue"
-                  Execute="deferred" Return="check"/>
-
-    <!-- InstallExecuteSequence -->
-    <InstallExecuteSequence>
-      <CustomAction Id="CreateFirewallRule" After="InstallFinalize"/>
-      <RemoveFile On="Uninstall" Name="AzerothCore Manager.lnk"/>
-      <CustomAction Id="RemoveFirewallRule" Before="RemoveFiles"/>
-    </InstallExecuteSequence>
-
-  </Product>
+    </Product>
+  </Package>
 </Wix>
 
