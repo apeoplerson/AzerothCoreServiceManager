@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="WixToolset.Heat" />
+    <PackageReference Include="WixToolset.Heat" Version="4.*" />
   </ItemGroup>
 
   <ItemGroup>
